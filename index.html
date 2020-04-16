@@ -8,206 +8,279 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Draft Report</title>
+  <title>Draft UO Reports</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  
-
+  <link href="vendor/css/jquery.dataTables.min.css" rel="stylesheet">
   <!-- Custom styles for this template -->
-  <link href="css/simple-sidebar.css" rel="stylesheet">
+  <link href="vendor/css/simple-sidebar.css" rel="stylesheet">
+  <link href="vendor/css/richtext.min.css" rel="stylesheet">
+  <link href="vendor/css/font-awesome.min.css" rel="stylesheet" />
+
 
 </head>
 
 <body>
 
-  <div class="d-flex" id="wrapper">
-  <!-- Page Nav Content -->
+  <div class="page-container d-flex" id="wrapper">
+    <div class="panel-container">
+  
+              <div class="panel-left">
+                  <!-- Page Nav Content -->
     <div id="page-content-wrapper">
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-        
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+      <!-----Draft Report Left Section----->
+            <div class="container-fluid">
+              <div class="wrapper">
+                
+                <div class="headingWrap clearfix">
+                <span class="wrapSpan">Draft Report</span>
+                <div class="float-right">
+                  <button type="button" class="butn blue">Track History</button>
+                  <button type="button" class="butn yelw" id="smlrReport">View Similar Report</button>
+                </div>
+                </div>
+      
+                <label class="orgName">
+                <input type="text" placeholder="Enter Organization Name" class="orgWidth">
+                </label>
+      
+                <label class="orgName clearfix">
+                  <input type="text" placeholder="Enter File Number" class="float-left"> &nbsp; &nbsp;
+                  <div class="float-right">
+                  Entity Type: 
+                  <select>
+                    <option>DropDown1</option>
+                    <option>DropDown2</option>
+                    <option>DropDown3</option>
+                    <option>DropDown4</option>
+                  </select> &nbsp; &nbsp;
+                  <input type="date" class="theDate">
+                  </div>
+                </label>
+      
+                <!------SubjectLine Area----->
+                <div class="clearfix p10">
+                 <div class="fbox"><span>Subject: </span> 
+                  <textarea name="text area" id="" cols="1" rows="1" class="sbTitle" placeholder="Text Subject"></textarea></div>
+                 <div class="float-right orgName brdrnone">
+                 <select>
+                    <option>Select Layout</option>
+                    <option>DropDown2</option>
+                    <option>DropDown3</option>
+                    <option>DropDown4</option>
+                  </select> &nbsp; &nbsp;
+                  <button class="butn drkblue float-right" id="clipbrd">Open Clip</button>
+                  </div>
+                </div>
+      
+                <!------editor area------>
+                <div class="page-wrapper">
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Menu</a>
-            </li>
-          </ul>
-        </div>
-       <div class="menuIcon" id="menu-toggle">
-          <div class="bar1"></div>
-          <div class="bar2"></div>
-          <div class="bar3"></div>
-        </div>
-
-      </nav>
-
-<!-----Draft Report Left Section----->
-      <div class="container-fluid">
-        <div class="wrapper">
-          
-          <div class="headingWrap">
-          <span class="wrapSpan">Draft Report</span>
-          <button type="button" class="butn yelw" id="smlrReport">View Similar Report</button>
-          </div>
-
-          <label class="orgName">
-            Enter Organization Name: <input type="text" placeholder="Enter Organization Name">
-          </label>
-
-          <label class="orgName">
-            File Number: <input type="text" placeholder="Enter File Number"> &nbsp; &nbsp;
-            Entity Type: 
-            <select>
-              <option>DropDown1</option>
-              <option>DropDown2</option>
-              <option>DropDown3</option>
-              <option>DropDown4</option>
-            </select> &nbsp; &nbsp;
-            Calender:  <input type="text" placeholder="Enter Organization Name">
-          </label>
-
-          <!------SubjectLine Area----->
-          <input type="text" placeholder="Subject" class="sbTitle">
-
-          <!------editor area------>
-          <div class="options">
-            <button onClick="transform('bold', null)">
-              <i class="fas fa-bold"></i>
-            </button>
-            <button onClick="transform('italic', null)">
-              <i class="fas fa-italic"></i>
-            </button>
-            <button onClick="transform('strikeThrough', null)">
-              <i class="fas fa-strikethrough"></i>
-            </button>
-            <button onClick="transform('underline', null)">
-              <i class="fas fa-underline"></i>
-            </button>
-            <div class="seperator"></div>
-            <button onClick="transform('justifyLeft', null)">
-              <i class="fas fa-align-left"></i>
-            </button>
-            <button onClick="transform('justifyCenter', null)">
-              <i class="fas fa-align-center"></i>
-            </button>
-            <button onClick="transform('justifyRight', null)">
-              <i class="fas fa-align-right"></i>
-            </button>
-            <div class="seperator"></div>
-            <button onClick="transform('insertOrderedList', null)">
-              <i class="fas fa-list-ol"></i>
-            </button>
-            <button onClick="transform('insertUnorderedList', null)">
-              <i class="fas fa-list-ul"></i>
-            </button>
-            <div class="seperator"></div>
-            <select onChange="transform('fontName', this.value)">
-              <option default>Normal</option>
-              <option value="Times New Roman">Times</option>
-              <option value="Arial">Arial</option>
-              <option value="Courier New">Courier New</option>
-              <option value="Tahoma">Tahoma</option>
-              <option value="Arial">Verdana</option>
-            </select>
-            <div class="seperator"></div>
-            <input type="number" onChange="transform('fontSize', this.value)" value="3" max="7" min="1"></input>
-          </div>
-
-          <iframe name="editor" id="editor"></iframe>
-
-          <label class="orgName clearfix">
-            <div class="float-left">
-              Attachment: &nbsp; <input type="text" placeholder="Enter File Number">
+                  <textarea class="content" name="example" id="editor"></textarea>
+      
+                </div>
+      
+                <div class="orgName clearfix">
+                  <div class="float-left">
+                    <button class="butn blue" id="attcdEnclosur">Attached Enclosures</button> &nbsp; &nbsp;
+                  </div>
+                  <div class="float-right">
+                    Authored By: &nbsp; <input type="text" placeholder="Enter Author Name">
+                    <!-- <select>
+                      <option>Sender List</option>
+                      <option>DropDown1</option>
+                      <option>DropDown2</option>
+                      <option>DropDown3</option>
+                      <option>DropDown4</option>
+                    </select> -->
+                  </div>
+                </div>
+      
+                <label class="orgName clearfix">
+                <div class="float-left">
+                  Send To: &nbsp; <input type="text" placeholder="Enter sender name">
+                </div>
+                <div class="float-right">
+                  <select>
+                    <option>Sender List</option>
+                    <option>DropDown1</option>
+                    <option>DropDown2</option>
+                    <option>DropDown3</option>
+                    <option>DropDown4</option>
+                  </select> &nbsp; &nbsp;
+                  <button class="butn drkblue">+ Create</button>
+                </div>
+                </label>
+      
+                <div class="line">
+                  <button class="butn yelw">Save as draft</button>
+                  <button class="butn green">Save & Send</button>
+                  <button class="butn green">Generate Final Report</button>
+                  <button class="butn red">Reset</button>
+                  <button class="butn blue">Preview</button>
+              </div>
+      
+              <label class="orgName clearfix">
+                <div class="float-left fbox">
+                  <input type="text" placeholder="Diary Number" disabled> &nbsp; &nbsp;
+                  <textarea name="text area" id="" cols="1" rows="1" placeholder="comments" class="sbTitle"></textarea>
+                </div>
+                <div class="float-right">
+                  <button class="butn drkblue" id="accessRgt">Access Rights</button>
+                </div>
+                </label>
+              </div>
             </div>
-            <div class="float-right">
-              Authored By:
-              <select>
-                <option>Sender List</option>
+          </div>
+          <!-- /#page-content-wrapper -->
+              </div>
+  
+              <div class="splitter">
+              </div>
+  
+              <div class="panel-right">
+                  <!------ Sidebar Right Section ------->
+     <div id="sidebar-wrapper">
+      <!-- <div class="change crIcon" id="menu-toggle">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div> -->
+      <div class="list-group list-group-flush">
+
+        <div class="smlrReport hide">
+         <button class="accordion">View Similar Reports</button>
+         <div class="panel">
+          <div class="tab">
+            <button class="tablinks" onclick="openCity(event, 'report')" id="defaultOpen">Reports</button>
+            <button class="tablinks" onclick="openCity(event, 'docViewer')">Doc Viewer</button>
+          </div>
+          
+          <div id="report" class="tabcontent">
+            <div class="orgName">
+             <span> Keyword:</span> <input type="text" placeholder="Enter Keyword" class="reprt"> <br /> <br />
+             <span> Event Type: </span>
+              <select class="reprt">
                 <option>DropDown1</option>
                 <option>DropDown2</option>
                 <option>DropDown3</option>
                 <option>DropDown4</option>
-              </select>
-            </div>
-            </label>
+              </select> <br /> <br />
+              <span> Page: </span>
+              <select class="reprt">
+                <option>DropDown1</option>
+                <option>DropDown2</option>
+                <option>DropDown3</option>
+                <option>DropDown4</option>
+              </select> <br /> <br />
+              <div class="orgName datRange">
+              <span>Date Range: </span>
+              <input type="date" class="theDate">
+              <input type="date" class="theDate">  
+              </div>
+              <div class="m10 clearfix"><button class="butn drkblue float-right">Search</button></div> <br />
+            
+              <div id="employee1">
+                <div id="emp_body1"> </div>
+                <div id="pager1">
+                  <ul id="pagination1" class="pagination-sm"></ul>
+                </div>
+                <div id="pager1">
+                 <ul id="pagination1" class="pagination-sm"></ul>
+                </div>
+               </div>
+               
 
-          <label class="orgName clearfix">
-          <div class="float-left">
-            Send To: &nbsp; <input type="text" placeholder="Enter File Number">
-          </div>
-            <select>
-              <option>Sender List</option>
-              <option>DropDown1</option>
-              <option>DropDown2</option>
-              <option>DropDown3</option>
-              <option>DropDown4</option>
-            </select> &nbsp; &nbsp;
-            <button class="butn drkblue">+ Create</button>
-          </label>
-
-          <div class="line">
-            <button class="butn yelw">Save as draft</button>
-            <button class="butn green">Save</button>
-            <button class="butn red">Reset</button>
-            <button class="butn blue">Preview</button>
-        </div>
-
-        <label class="orgName clearfix">
-          <div class="float-left">
-            <input type="text" placeholder="Diary Number" disabled>
-          </div>
-          <div class="float-right">
-            <button class="butn drkblue" id="accessRgt">Access Rights</button>
-          </div>
-          </label>
-        </div>
-      </div>
-    </div>
-    <!-- /#page-content-wrapper -->
-
-     <!------ Sidebar Right Section ------->
-     <div id="sidebar-wrapper">
-      <div class="list-group list-group-flush">
-
-        <div class="smlrReport">
-        <button class="accordion">View Similar Reports</button>
-        <div class="panel">
-          <div class="tab">
-            <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Reports</button>
-            <button class="tablinks" onclick="openCity(event, 'Paris')">Doc Viewer</button>
+              </div>
           </div>
           
-          <div id="London" class="tabcontent">
-           <h3>Reports</h3>
-            <p>Under Construction</p>
-          </div>
-          
-          <div id="Paris" class="tabcontent">
+          <div id="docViewer" class="tabcontent">
             <h3>Doc Viewer</h3>
             <p>Under Construction</p> 
           </div>
           </div>
-        </div>
-        <button class="accordion">ClipBoard</button>
-        <div class="panel" id="employee">
-        <div id="emp_body"> </div>
-        <div id="pager">
-          <ul id="pagination" class="pagination-sm"></ul>
-        </div>
-        <div id="pager">
-         <ul id="pagination" class="pagination-sm"></ul>
-        </div>
-       </div>
+          </div>
+
+          <!------------Attached Enclousers--------------->
+          <div class="attcdEnclosur hide">
+            <button class="accordion">Attached Enclosures</button>
+            <div class="panel p0">
+             <div class="tab">
+               <button class="tablinks tblinks" onclick="openreportAttch(event, 'reportAttch')" id="defaultOpen2">Reports</button>
+               <button class="tablinks tblinks" onclick="openreportAttch(event, 'docViewerAttch')">Doc Viewer</button>
+             </div>
+             
+             <div id="reportAttch" class="tabcontent tbcontent">
+               <label class="orgName">
+                <span> Keyword:</span> <input type="text" placeholder="Enter Keyword" class="reprt"> <br /> <br />
+                <span> Entity Type: </span>
+                 <select class="reprt">
+                   <option>DropDown1</option>
+                   <option>DropDown2</option>
+                   <option>DropDown3</option>
+                   <option>DropDown4</option>
+                 </select> <br /> <br />
+                 <div class="orgName datRange">
+                  <span>Date Range: </span>
+                  <input type="date" class="theDate">
+                  <input type="date" class="theDate">  
+                  </div>
+                  <div class="m10 clearfix">
+                    <!-- <button class="butn blue">Browse From System</button> -->
+                    <div class="element">
+                      <label for="file-input" class="file-input butn blue">
+                        <i class="fa fa-paperclip" aria-hidden="true">&nbsp;Browse from System</i>
+                      </label>
+                      <div class="name">No file selected</div>
+                      <input type="file" id="file-input" multiple>
+                    </div>
+                    <button class="butn drkblue float-right">Search</button></div> <br />
+                  </label>
+                  <div class="panel p0">
+                    <table id="attcdEnclosurData" class="display" style="width:100%">
+                      <thead>
+                          <tr>
+                              <th>Employee id</th>
+                              <th>Employee name</th>
+                              <th>Employee Salary</th>
+                              <th>Employee Age</th>
+                              <th>Employee Profile Image</th>
+                          </tr>
+                      </thead>
+                  </table>
+                  </div>
+             </div>
+             
+             <div id="docViewerAttch" class="tabcontent">
+               <h3>Doc Viewer</h3>
+               <p>Under Construction</p> 
+             </div>
+             </div>
+             </div>
+
+             <!------------clipboard Start--------------->
+            <div class="clipbrd active">
+              <button class="accordion">ClipBoard</button>
+              <div class="panel">
+                <table id="example" class="display" style="width:100%">
+                  <thead>
+                      <tr>
+                          <th>Employee id</th>
+                          <th>Employee name</th>
+                          <th>Employee Salary</th>
+                          <th>Employee Age</th>
+                          <th>Employee Profile Image</th>
+                      </tr>
+                  </thead>
+              </table>
+              </div>
+            </div>
+
+          <!-----------Access Right manager------------->
        
-       <div class="accessMan accessRgt">
+       <div class="accessMan accessRgt hide">
         <button class="accordion">Access Right Manager</button>
         <div class="panel">
           <p>
@@ -257,22 +330,29 @@
               <span class="checkmark"></span>
               </label>
               </p>
+              <div class="float-right">
+                <button class="butn default">Default</button>
+                <button class="butn drkblue">Access Rights</button>
+              </div>
             </div>
         </div>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
-
-  </div>
-  <!-- /#wrapper -->
+              </div>
+          </div>
+  
+      </div>
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.min.js"></script>
-  <script src="vendor/custom.js"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+  <script src="vendor/jquery/jquery.twbsPagination.min.js"></script>
+  <script src='vendor/js/jquery-resizable.js'></script>
+  <script src="vendor/js/jquery.dataTables.min.js"></script>
+  <script src="vendor/js/jquery.richtext.js"></script>
+  <script src="vendor/js/custom.js"></script>
 </body>
 
 </html>

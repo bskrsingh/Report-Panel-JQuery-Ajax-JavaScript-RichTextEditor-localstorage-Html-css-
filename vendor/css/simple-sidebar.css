@@ -1,0 +1,160 @@
+body {
+  overflow-x: hidden;
+}
+p{margin: 0;}
+.p0{padding:0 !important}
+h1 {margin: 0;padding-bottom: 5pt;border-bottom: 1px solid #ddd;}
+
+#sidebar-wrapper{min-height:100vh;margin-left:-15rem;padding:10px;
+   -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+}
+#wrapper .nav-link{padding:0 10px}
+#sidebar-wrapper .sidebar-heading {padding: 0.875rem 1.25rem;font-size: 1.2rem;}
+.m10{margin-top:10px}
+#page-content-wrapper {min-width: 100vw;}
+#wrapper.toggled #sidebar-wrapper {margin-left: 0;}
+/*****accordion*****/
+.accordion {background-color: #0a00a2c7;color: #fff;cursor:pointer;padding: 10px;width: 100%;border: none;text-align: left;
+outline: none;font-size: 15px;transition: 0.4s;margin-bottom: 5px;}
+.active, .accordion:hover {background-color: #0a00a2c7;}
+.accordion:after {content: '\002B';color: #fff;font-weight: bold;float: right;margin-left: 5px;}
+.accordion.active:after {content: "\2212";}
+/*****accordion end****/
+
+.panel{background-color: white;max-height: 0;overflow: hidden;padding:10px;width:100%;transition: max-height 0.2s ease-out;display:table;}
+.lineContent{border: 1px solid #ccc;border-radius: 5px;margin-bottom:5px;}
+.date{background-color: #ccc;padding: 8px;font-size: 12px;font-weight: 600;}
+.panel p{padding:8px;font-size:12px;}
+
+  /*****checkbox start******/
+.checkbox{display: inline-block;position: relative;padding-left: 23px;margin: 10px 5px;cursor: pointer;font-size: 12px;
+  -webkit-user-select: none;user-select: none;color: #444;line-height: 17px;}
+.checkbox input {position: absolute;opacity: 0;cursor: pointer;height: 0;width: 0;}
+.checkmark {position: absolute;top: 0;left: 0;height: 17px;width: 18px;background-color: #eee;}
+.checkbox:hover input ~ .checkmark {background-color: #ccc;}
+.checkbox input:checked ~ .checkmark {background-color: #2196F3;}
+.checkmark:after {content: "";position: absolute;display: none;}
+.checkbox input:checked ~ .checkmark:after {display: block;}
+.checkbox .checkmark:after {left: 6px;top: 0px;width: 5px;height: 12px;border: solid white;border-width: 0 2px 3px 0;transform: rotate(45deg);}
+/*****checkbox end******/
+
+.dat2 {font-size: 12px;width: 57px;display: inline-block;line-height: 17px;}
+.butn {box-shadow: none;border: 1px solid #ccc;font-size: 12px;padding: 7px 15px;color:#fff;font-weight:600;border-radius:5px;}
+.headingWrap {border-bottom: 1px solid #ddd;display: block;width: 100%;padding: 10px 0;}
+
+/*************editor css start**********/
+.page-wrapper{margin: 0 auto;width: 960px;max-width: 100%;}
+.box-content {padding:20px;background-color: #EFEFEF;}
+.richText textarea {background-color:#FAFAFA;border:#EFEFEF solid 1px;color:#333;height:150px;width:100%;}
+/*************editor css end**********/
+
+/*** input type and button start****/
+.options button {margin: 0;padding: 0;height: 30pt;width: 30pt;background-color: #fff;border: 0;cursor: pointer;color: #333;font-size: 12px;}
+.options button:active {color: #333;}
+.options select {height: 30pt;border: 0;padding-left: 5pt;padding-right: 5pt;outline: none;margin-left:5px;font-size:12px;}
+.options input[type="text"] {height: 20pt;width: 100%;padding: 0;border: 0;outline: none;font-size: 14px;margin-top: 5pt;}
+.options {width: 100%;margin: 5pt;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}
+.options input[type="number"] {height: 23pt;border: 1px solid #e2e1e1;padding: 0;padding-left: 5pt;padding-right: 5pt;outline: none;margin-left: 5px;}
+/*** input type and button end****/
+
+.sbTitle {width: 100%;border: 1px solid #e8e8e8;padding: 5px 10px;font-size:12px;}
+
+.orgName {display: block;text-align: center;font-size: 11px;border-bottom: 1px solid #ddd;padding: 10px 0;margin-bottom:0;}
+.orgName input[type="text"],.orgName input[type="date"], .headingWrap input[type="text"] {border: 1px solid #ddd;padding: 5px 10px;}
+.orgName input[type="date"] {position: relative;padding:5px 10px;}
+.orgName input[type="date"]::-webkit-calendar-picker-indicator {color: transparent;background: none;z-index: 1;}
+.orgName input[type="date"]:before {color: transparent;background: none;display: block;font-family: 'FontAwesome';content: '\f073';width: 15px;height: 20px;position: absolute;top: 7px;right: 6px;color: #999;}
+.headingWrap input[type="text"]{display: inline-block;}
+.orgName select {background-color: transparent;border: 1px solid #ddd;padding: 0 10px;height: 30px;width: 120px;}
+.datRange{padding:0}
+.datRange input[type="date"]{width:38%}
+
+.blue{background-color: #7ebbd8ee;}
+.red{background-color: #de2828ee;}
+.green{background-color: #3ea000ee;}
+.p10{padding:10px;}
+.drkblue{background-color: #4b49b1eb}
+.yelw{background-color: #efa828f5}
+
+
+.active{display:block;}
+.hide{display:none;}
+
+.line .butn{margin:10px;float:left;}
+.line{display: inline-block}
+.orgWidth{width:60%}
+
+/* Style the tabs start*/
+.tab{overflow: hidden;border: 1px solid #ccc;background-color: #f1f1f1;}
+.tab button {background-color: inherit;float: left;border: none;outline: none;cursor: pointer;padding: 4px 25px;transition: 0.3s;font-size: 12px;}
+.tab button:hover {background-color: #ddd;}
+.tab button.active {background-color: #ccc;}
+.tabcontent {display: none;padding: 6px 12px;border: 1px solid #ccc;border-top: none;}
+.topright {float: right;cursor: pointer;font-size: 28px;}
+.topright:hover {color: red;}
+.tabcontent .orgName{text-align:left;}
+.tabcontent .orgName span{width:20%;display:inline-block}
+.tabcontent .reprt{width:75%;display:inline-block;}
+.tabcontent .orgName{border-bottom:0;}
+/* Style the tabs end*/
+
+
+.fbox{display: inline-flex;font-size: 12px;width: 67%;}
+.brdrnone{border:none;padding:0}
+.fbox span{margin-top:6px;width:12%}
+.crIcon {position: absolute;right: 9px;background: #fff;border-radius: 50%;padding: 4px 6px;box-shadow: 0 2px 2px 0px #ccc;line-height: 18px;width: 38px;height: 38px; top: 12px;}
+.element>input {display: none;}
+.element{display:inline-block;width:66%}
+.name{display:inline-block;}
+.fa.fa-paperclip{font-weight:600;}
+.file-input{margin:0;font-size:15px;font-style:normal;cursor: pointer;padding:5px 10px;font-weight:600;}
+
+/*****reside pannel start*******/
+.panel-container{display: flex;flex-direction: row;width:100%;}
+.panel-left {flex: 0 0 auto;width:63%;}
+.splitter {flex: 0 0 auto;width: 18px;background: url(../img/vsizegrip.png) center center no-repeat #535353;
+min-height: 200px;cursor: col-resize;}
+.panel-right {flex: 1 1 auto;}
+/*****reside pannel end*******/
+
+/***************Data table css start****************/
+.dataTables_wrapper{font-size:12px}
+.display thead{display:none;}
+.display td{display:block;padding:5px;border:none!important;font-size:12px}
+.display tr{border:1px solid #ccc;margin:5px 0;display:block;border-radius:5px;}
+.display td:first-child{background-color:#ccc;}
+.display tr.odd{background-color:transparent !important;}
+.display tr.selected{background-color: #B0BED9 !important;}
+.panel .dataTables_wrapper .paginate_button{padding: 5px 10px;font-size: 12px;background: transparent;border:1px solid #dee2e6;margin: 0;border-radius:0;}
+.dataTables_scrollHead{display:none;}
+.panel .dataTables_wrapper .dataTables_scrollBody{border-bottom:1px solid #ccc;}
+.panel .dataTables_wrapper .paginate_button.current, .panel .dataTables_wrapper .paginate_button:hover{background:#007bff !important;color:#fff !important;font-weight:600;border:1px solid #fff;}
+.dataTables_wrapper select{background-color:transparent;border:1px solid #ccc;padding:5px}
+.panel input[type="search"]{box-shadow:none;border:1px solid #ccc}
+#attcdEnclosurData_wrapper{border-top:1px solid #ccc;padding-top:10px;}
+#attcdEnclosurData_filter label{margin:3px 0 0;}
+/*************Datatable css end*****************/
+
+/*****media query start*******/
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-right: -41rem;
+  }
+}
+
+@media (max-width: 767px) {
+ .fbox{margin:10px 0}
+}
+
