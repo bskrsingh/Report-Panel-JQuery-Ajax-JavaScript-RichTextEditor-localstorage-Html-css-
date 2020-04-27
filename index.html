@@ -11,344 +11,327 @@
   <title>Draft UO Reports</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
   <link href="vendor/css/jquery.dataTables.min.css" rel="stylesheet">
-  <!-- Custom styles for this template -->
   <link href="vendor/css/simple-sidebar.css" rel="stylesheet">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="vendor/css/richtext.min.css" rel="stylesheet">
   <link href="vendor/css/font-awesome.min.css" rel="stylesheet" />
-
-
+  <link href="vendor/bootstrap/css/bootstrap-multiselect.css" rel="stylesheet">
+ 
 </head>
 
 <body>
 
   <div class="page-container d-flex" id="wrapper">
     <div class="panel-container">
-  
-              <div class="panel-left">
-                  <!-- Page Nav Content -->
-    <div id="page-content-wrapper">
 
-      <!-----Draft Report Left Section----->
-            <div class="container-fluid">
-              <div class="wrapper">
-                
-                <div class="headingWrap clearfix">
+      <div id="mySidenav" class="sidenav">
+        <a href="#" id="accessRgt">Create Report</a>
+        <a href="#">Edit Report</a>
+        <a href="#">View Report</a>
+        <a href="#">Drafts</a>
+      </div>
+
+      <div class="panel-left" id="main">
+        <!-- Page Nav Content -->
+        <div id="page-content-wrapper">
+
+          <!-----Draft Report Left Section----->
+          <div class="container-fluid">
+            <div class="wrapper">
+
+              <div class="headingWrap clearfix">
+                <div class="menubar" onclick="openNav()">
+                  <span class="bar1"></span>
+                  <span class="bar2"></span>
+                  <span class="bar3"></span>
+                </div> &nbsp;
                 <span class="wrapSpan">Draft Report</span>
                 <div class="float-right">
                   <button type="button" class="butn blue">Track History</button>
                   <button type="button" class="butn yelw" id="smlrReport">View Similar Report</button>
                 </div>
-                </div>
-      
-                <label class="orgName">
-                <input type="text" placeholder="Enter Organization Name" class="orgWidth">
-                </label>
-      
-                <label class="orgName clearfix">
-                  <input type="text" placeholder="Enter File Number" class="float-left"> &nbsp; &nbsp;
-                  <div class="float-right">
-                  Entity Type: 
-                  <select>
-                    <option>DropDown1</option>
-                    <option>DropDown2</option>
-                    <option>DropDown3</option>
-                    <option>DropDown4</option>
+              </div>
+
+              <label class="orgName">
+                <input type="text" placeholder="Enter Organization Name" class="orgWidth" id="orgName" required>
+              </label>
+
+              <label class="orgName clearfix">
+                <input type="text" placeholder="Enter File Number" class="float-left" id="fileNum"> &nbsp; &nbsp;
+                <div class="float-right">
+                  Entity Type:
+                  <select id="entitype">
+                    <option selected>Select Entity type</option>
+                    <option value="dd1">DropDown1</option>
+                    <option value="dd2">DropDown2</option>
+                    <option value="dd3">DropDown3</option>
+                    <option value="dd3">DropDown4</option>
                   </select> &nbsp; &nbsp;
-                  <input type="date" class="theDate">
-                  </div>
-                </label>
-      
-                <!------SubjectLine Area----->
-                <div class="clearfix p10">
-                 <div class="fbox"><span>Subject: </span> 
-                  <textarea name="text area" id="" cols="1" rows="1" class="sbTitle" placeholder="Text Subject"></textarea></div>
-                 <div class="float-right orgName brdrnone">
-                 <select>
+                  <input type="date" class="theDate" id="dataRetriev">
+                </div>
+              </label>
+
+              <!------SubjectLine Area----->
+              <div class="clearfix p10">
+                <div class="fbox"><span>Subject: </span>
+                  <textarea name="text area" cols="1" rows="1" class="sbTitle"
+                    placeholder="Text Subject" id="subject"></textarea></div>
+                <div class="float-right orgName brdrnone">
+                  <select id="selectLayout">
                     <option>Select Layout</option>
                     <option>DropDown2</option>
                     <option>DropDown3</option>
                     <option>DropDown4</option>
                   </select> &nbsp; &nbsp;
                   <button class="butn drkblue float-right" id="clipbrd">Open Clip</button>
-                  </div>
                 </div>
-      
-                <!------editor area------>
-                <div class="page-wrapper">
+              </div>
 
-                  <textarea class="content" name="example" id="editor"></textarea>
-      
-                </div>
-      
-                <div class="orgName clearfix">
-                  <div class="float-left">
-                    <button class="butn blue" id="attcdEnclosur">Attached Enclosures</button> &nbsp; &nbsp;
-                  </div>
-                  <div class="float-right">
-                    Authored By: &nbsp; <input type="text" placeholder="Enter Author Name">
-                    <!-- <select>
-                      <option>Sender List</option>
-                      <option>DropDown1</option>
-                      <option>DropDown2</option>
-                      <option>DropDown3</option>
-                      <option>DropDown4</option>
-                    </select> -->
-                  </div>
-                </div>
-      
-                <label class="orgName clearfix">
+              <!------editor area------>
+              <div class="page-wrapper">
+
+                <textarea class="content" name="example" id="editor"></textarea>
+
+              </div>
+
+              <div class="orgName clearfix">
                 <div class="float-left">
-                  Send To: &nbsp; <input type="text" placeholder="Enter sender name">
+                  <button class="butn blue" id="attcdEnclosur">Attached Enclosures</button> &nbsp; &nbsp;
                 </div>
                 <div class="float-right">
-                  <select>
-                    <option>Sender List</option>
-                    <option>DropDown1</option>
-                    <option>DropDown2</option>
-                    <option>DropDown3</option>
-                    <option>DropDown4</option>
-                  </select> &nbsp; &nbsp;
-                  <button class="butn drkblue">+ Create</button>
+                  Authored By: &nbsp; <input type="text" placeholder="Enter Author Name">
                 </div>
-                </label>
-      
-                <div class="line">
-                  <button class="butn yelw">Save as draft</button>
-                  <button class="butn green">Save & Send</button>
-                  <button class="butn green">Generate Final Report</button>
-                  <button class="butn red">Reset</button>
-                  <button class="butn blue">Preview</button>
               </div>
-      
+
+              <label class="orgName clearfix">
+                <div class="float-left senderLst">
+                  <!-- <div><input type="text" placeholder="Selected value" value="" id="tagsname"></div> -->
+                  Send To: &nbsp; <select multiple="multiple" class="senderList" disabled></select>
+                  <button type="button" class="butn drkblue" id="accessRgt" value="Get Selected">Add Receivers</button>
+                </div>
+                <div class="float-right senderLst">
+                  Distributed To: <select id="senderList" multiple="multiple" class="senderList" disabled></select>
+                <button type="button" class="butn drkblue" id="accessRgt" value="Get Selected">Add Final Recipients</button>
+                </div>
+              </label>
+              <div class="line">
+                <button class="butn yelw" onclick="saveDraft()" id="saveDraft">Save as draft</button>
+                <button class="butn green">Save & Send</button>
+                <button class="butn green">Generate Final Report</button>
+                <button class="butn red">Reset</button>
+                <button class="butn blue">Preview</button>
+              </div>
+
               <label class="orgName clearfix">
                 <div class="float-left fbox">
                   <input type="text" placeholder="Diary Number" disabled> &nbsp; &nbsp;
                   <textarea name="text area" id="" cols="1" rows="1" placeholder="comments" class="sbTitle"></textarea>
                 </div>
                 <div class="float-right">
-                  <button class="butn drkblue" id="accessRgt">Access Rights</button>
+                  <!-- <button class="butn drkblue" id="accessRgt">Access Rights</button> -->
+                  <button class="butn drkblue">+ Create</button>
                 </div>
-                </label>
-              </div>
+              </label>
             </div>
           </div>
-          <!-- /#page-content-wrapper -->
-              </div>
-  
-              <div class="splitter">
-              </div>
-  
-              <div class="panel-right">
-                  <!------ Sidebar Right Section ------->
-     <div id="sidebar-wrapper">
-      <!-- <div class="change crIcon" id="menu-toggle">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-      </div> -->
-      <div class="list-group list-group-flush">
+        </div>
+        <!-- /#page-content-wrapper -->
+      </div>
 
-        <div class="smlrReport hide">
-         <button class="accordion">View Similar Reports</button>
-         <div class="panel">
-          <div class="tab">
-            <button class="tablinks" onclick="openCity(event, 'report')" id="defaultOpen">Reports</button>
-            <button class="tablinks" onclick="openCity(event, 'docViewer')">Doc Viewer</button>
-          </div>
-          
-          <div id="report" class="tabcontent">
-            <div class="orgName">
-             <span> Keyword:</span> <input type="text" placeholder="Enter Keyword" class="reprt"> <br /> <br />
-             <span> Event Type: </span>
-              <select class="reprt">
-                <option>DropDown1</option>
-                <option>DropDown2</option>
-                <option>DropDown3</option>
-                <option>DropDown4</option>
-              </select> <br /> <br />
-              <span> Page: </span>
-              <select class="reprt">
-                <option>DropDown1</option>
-                <option>DropDown2</option>
-                <option>DropDown3</option>
-                <option>DropDown4</option>
-              </select> <br /> <br />
-              <div class="orgName datRange">
-              <span>Date Range: </span>
-              <input type="date" class="theDate">
-              <input type="date" class="theDate">  
-              </div>
-              <div class="m10 clearfix"><button class="butn drkblue float-right">Search</button></div> <br />
-            
-              <div id="employee1">
-                <div id="emp_body1"> </div>
-                <div id="pager1">
-                  <ul id="pagination1" class="pagination-sm"></ul>
+      <div class="splitter">
+      </div>
+
+      <div class="panel-right">
+        <!------ Sidebar Right Section ------->
+        <div id="sidebar-wrapper">
+          <div class="list-group list-group-flush">
+
+            <div class="smlrReport hide">
+              <button class="accordion">View Similar Reports</button>
+              <div class="panel">
+                <div class="tab">
+                  <button class="tablinks" onclick="openCity(event, 'report')" id="defaultOpen">Reports</button>
+                  <button class="tablinks" onclick="openCity(event, 'docViewer')">Doc Viewer</button>
                 </div>
-                <div id="pager1">
-                 <ul id="pagination1" class="pagination-sm"></ul>
-                </div>
-               </div>
-               
 
-              </div>
-          </div>
-          
-          <div id="docViewer" class="tabcontent">
-            <h3>Doc Viewer</h3>
-            <p>Under Construction</p> 
-          </div>
-          </div>
-          </div>
-
-          <!------------Attached Enclousers--------------->
-          <div class="attcdEnclosur hide">
-            <button class="accordion">Attached Enclosures</button>
-            <div class="panel p0">
-             <div class="tab">
-               <button class="tablinks tblinks" onclick="openreportAttch(event, 'reportAttch')" id="defaultOpen2">Reports</button>
-               <button class="tablinks tblinks" onclick="openreportAttch(event, 'docViewerAttch')">Doc Viewer</button>
-             </div>
-             
-             <div id="reportAttch" class="tabcontent tbcontent">
-               <label class="orgName">
-                <span> Keyword:</span> <input type="text" placeholder="Enter Keyword" class="reprt"> <br /> <br />
-                <span> Entity Type: </span>
-                 <select class="reprt">
-                   <option>DropDown1</option>
-                   <option>DropDown2</option>
-                   <option>DropDown3</option>
-                   <option>DropDown4</option>
-                 </select> <br /> <br />
-                 <div class="orgName datRange">
-                  <span>Date Range: </span>
-                  <input type="date" class="theDate">
-                  <input type="date" class="theDate">  
-                  </div>
-                  <div class="m10 clearfix">
-                    <!-- <button class="butn blue">Browse From System</button> -->
-                    <div class="element">
-                      <label for="file-input" class="file-input butn blue">
-                        <i class="fa fa-paperclip" aria-hidden="true">&nbsp;Browse from System</i>
-                      </label>
-                      <div class="name">No file selected</div>
-                      <input type="file" id="file-input" multiple>
+                <div id="report" class="tabcontent">
+                  <div class="orgName">
+                    <span> Keyword:</span> <input type="text" placeholder="Enter Keyword" class="reprt"> <br /> <br />
+                    <span> Event Type: </span>
+                    <select class="reprt">
+                      <option>DropDown1</option>
+                      <option>DropDown2</option>
+                      <option>DropDown3</option>
+                      <option>DropDown4</option>
+                    </select> <br /> <br />
+                    <span> Page: </span>
+                    <select class="reprt">
+                      <option>DropDown1</option>
+                      <option>DropDown2</option>
+                      <option>DropDown3</option>
+                      <option>DropDown4</option>
+                    </select> <br /> <br />
+                    <div class="orgName datRange">
+                      <span>Date Range: </span>
+                      <input type="date" class="theDate">
+                      <input type="date" class="theDate">
                     </div>
-                    <button class="butn drkblue float-right">Search</button></div> <br />
+                    <div class="m10 clearfix"><button class="butn drkblue float-right">Search</button></div> <br />
+
+                    <div id="similarReport">
+                      <div id="similarReportData">
+                        <table id="docTable" class="display" style="width:100%">
+                          <thead>
+                            <tr>
+                              <th>Date</th>
+                              <th>Results</th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="docViewer" class="tabcontent">
+                  <h3>Doc Viewer</h3>
+                  <p>Under Construction</p>
+                </div>
+              </div>
+            </div>
+
+            <!------------Attached Enclousers--------------->
+            <div class="attcdEnclosur hide">
+              <button class="accordion">Attached Enclosures</button>
+              <div class="panel p0">
+                <div class="tab">
+                  <button class="tablinks tblinks" onclick="openreportAttch(event, 'reportAttch')"
+                    id="defaultOpen2">Reports</button>
+                  <button class="tablinks tblinks" onclick="openreportAttch(event, 'docViewerAttch')">Doc
+                    Viewer</button>
+                </div>
+
+                <div id="reportAttch" class="tabcontent tbcontent">
+                  <label class="orgName">
+                    <span> Keyword:</span> <input type="text" placeholder="Enter Keyword" class="reprt"> <br /> <br />
+                    <span> Entity Type: </span>
+                    <select class="reprt">
+                      <option>DropDown1</option>
+                      <option>DropDown2</option>
+                      <option>DropDown3</option>
+                      <option>DropDown4</option>
+                    </select> <br /> <br />
+                    <div class="orgName datRange">
+                      <span>Date Range: </span>
+                      <input type="date" class="theDate">
+                      <input type="date" class="theDate">
+                    </div>
+                    <div class="m10 clearfix">
+                      <!-- <button class="butn blue">Browse From System</button> -->
+                      <div class="element">
+                        <label for="file-input" class="file-input butn blue">
+                          <i class="fa fa-paperclip" aria-hidden="true">&nbsp;Browse from System</i>
+                        </label>
+                        <div class="name">No file selected</div>
+                        <input type="file" id="file-input" multiple>
+                      </div>
+                      <button class="butn drkblue float-right">Search</button>
+                    </div> <br />
                   </label>
                   <div class="panel p0">
                     <table id="attcdEnclosurData" class="display" style="width:100%">
                       <thead>
-                          <tr>
-                              <th>Employee id</th>
-                              <th>Employee name</th>
-                              <th>Employee Salary</th>
-                              <th>Employee Age</th>
-                              <th>Employee Profile Image</th>
-                          </tr>
-                      </thead>
-                  </table>
-                  </div>
-             </div>
-             
-             <div id="docViewerAttch" class="tabcontent">
-               <h3>Doc Viewer</h3>
-               <p>Under Construction</p> 
-             </div>
-             </div>
-             </div>
-
-             <!------------clipboard Start--------------->
-            <div class="clipbrd active">
-              <button class="accordion">ClipBoard</button>
-              <div class="panel">
-                <table id="example" class="display" style="width:100%">
-                  <thead>
-                      <tr>
+                        <tr>
                           <th>Employee id</th>
                           <th>Employee name</th>
                           <th>Employee Salary</th>
                           <th>Employee Age</th>
                           <th>Employee Profile Image</th>
-                      </tr>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
+                </div>
+
+                <div id="docViewerAttch" class="tabcontent">
+                  <h3>Doc Viewer</h3>
+                  <p>Under Construction</p>
+                </div>
+              </div>
+            </div>
+
+            <!------------clipboard Start--------------->
+            <div class="clipbrd active">
+              <button class="accordion">ClipBoard</button>
+              <div class="panel">
+                <table id="clipboard" class="display" style="width:100%">
+                  <thead>
+                    <tr>
+                      <th>Employee id</th>
+                      <th>Employee name</th>
+                      <th>Employee Salary</th>
+                      <th>Employee Age</th>
+                      <th>Employee Profile Image</th>
+                    </tr>
                   </thead>
-              </table>
+                </table>
               </div>
             </div>
 
-          <!-----------Access Right manager------------->
-       
-       <div class="accessMan accessRgt hide">
-        <button class="accordion">Access Right Manager</button>
-        <div class="panel">
-          <p>
-            <label class="dat2">Head</label>
-            <label class="checkbox">Can View
-            <input type="checkbox" checked="checked" />
-            <span class="checkmark"></span>
-            </label>
-            <label class="checkbox">Can Edit
-            <input type="checkbox" />
-            <span class="checkmark"></span>
-            </label>
-            <label class="checkbox">Can Comment
-            <input type="checkbox" />
-            <span class="checkmark"></span>
-            </label>
-            </p>
+            <!-----------Access Right manager------------->
 
-            <p>
-              <label class="dat2">Head 2</label>
-              <label class="checkbox">Can View
-              <input type="checkbox" checked="checked" />
-              <span class="checkmark"></span>
-              </label>
-              <label class="checkbox">Can Edit
-              <input type="checkbox" />
-              <span class="checkmark"></span>
-              </label>
-              <label class="checkbox">Can Comment
-              <input type="checkbox" />
-              <span class="checkmark"></span>
-              </label>
-              </p>
+            <div class="accessMan accessRgt hide">
+              <button class="accordion">Access Right Manager</button>
+              <div class="panel">
+                <h2 class="recvrLst">Receivers Lists:</h2>
+                <p class="noRcvr">No Receivers List Selected</p>
+                <ul class="dataForAr p0 m0"></ul>
+                <hr class="hrLine"/>
+                <h2 class="recvrLst">Receivers Action:</h2>
+                <button class="butn cV default ml5">Can View</button>
+                <button class="butn cE default ml5">Can Edit</button>
+                <button class="butn cC default ml5">Can Comment</button>
+                <button class="butn default ml5" id="clear">Clear</button> <br />
+                </div>
+              <ul class="clearfix p0 customTab">
+                <li><a href="#" class="active">Can View</a>
+                  <div class="tabsDetail active">
+                    <ul class="cVdata p0"></ul>
+                  </div>
+                </li>
+                <li><a href="#">Can Edit</a>
+                  <div class="tabsDetail">
+                    <ul class="cEdata p0"></ul>
+                  </div>
+                </li>
+                <li><a href="#">Can Comment</a>
+                  <div class="tabsDetail">
+                    <ul class="cCdata p0"></ul>
+                  </div>
+                </li>
+              </ul>
 
-              <p>
-              <label class="dat2">Group Member</label>
-              <label class="checkbox">Can View
-              <input type="checkbox" checked="checked" />
-              <span class="checkmark"></span>
-              </label>
-              <label class="checkbox">Can Edit
-              <input type="checkbox" />
-              <span class="checkmark"></span>
-              </label>
-              <label class="checkbox">Can Comment
-              <input type="checkbox" />
-              <span class="checkmark"></span>
-              </label>
-              </p>
-              <div class="float-right">
-                <button class="butn default">Default</button>
-                <button class="butn drkblue">Access Rights</button>
-              </div>
             </div>
-        </div>
-      </div>
-    </div>
-    <!-- /#sidebar-wrapper -->
-              </div>
           </div>
-  
+        </div>
+        <!-- /#sidebar-wrapper -->
       </div>
+
+    </div>
+  </div>
+
+  <!---------Loader-------------->
+  <div id='loader' style='display: none;'>
+    <div class="loader"></div>
+  </div>
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <script src="vendor/jquery/jquery.twbsPagination.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap-multiselect.js"></script>
   <script src='vendor/js/jquery-resizable.js'></script>
   <script src="vendor/js/jquery.dataTables.min.js"></script>
   <script src="vendor/js/jquery.richtext.js"></script>
