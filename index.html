@@ -21,16 +21,21 @@
  
 </head>
 
-<body>
+<body onload="dataLoad()">
 
   <div class="page-container d-flex" id="wrapper">
     <div class="panel-container">
 
       <div id="mySidenav" class="sidenav">
-        <a href="#" id="accessRgt">Create Report</a>
-        <a href="#">Edit Report</a>
-        <a href="#">View Report</a>
-        <a href="#">Drafts</a>
+        <div class="menubar">
+          <span class="bar1"></span>
+          <span class="bar2"></span>
+          <span class="bar3"></span>
+        </div>
+        <a href="#" title="View Report" class="viewReporttab Tabactive"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;<span>View Report</span></a>
+        <a href="#" title="Create Report" class="createViewtab"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;<span>Create Report</span></a>
+        <a href="#" title="Edit Report" class="editViewtab"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;<span>Edit Report</span></a>
+        <a href="#" title="Drafts Report" class="viewDrafttab"><i class="fa fa-file" aria-hidden="true"></i>&nbsp;<span>Drafts</span></a>
       </div>
 
       <div class="panel-left" id="main">
@@ -39,15 +44,11 @@
 
           <!-----Draft Report Left Section----->
           <div class="container-fluid">
-            <div class="wrapper">
+            <div class="wrapper createView hide">
 
               <div class="headingWrap clearfix">
-                <div class="menubar" onclick="openNav()">
-                  <span class="bar1"></span>
-                  <span class="bar2"></span>
-                  <span class="bar3"></span>
-                </div> &nbsp;
-                <span class="wrapSpan">Draft Report</span>
+               
+                <span class="wrapSpan">Create Report</span>
                 <div class="float-right">
                   <button type="button" class="butn blue">Track History</button>
                   <button type="button" class="butn yelw" id="smlrReport">View Similar Report</button>
@@ -55,7 +56,7 @@
               </div>
 
               <label class="orgName">
-                <input type="text" placeholder="Enter Organization Name" class="orgWidth" id="orgName" required>
+                <input type="text" placeholder="Enter Organization Name" value="" class="orgWidth" id="orgName" name="orgName">
               </label>
 
               <label class="orgName clearfix">
@@ -74,7 +75,7 @@
               </label>
 
               <!------SubjectLine Area----->
-              <div class="clearfix p10">
+              <div class="clearfix pt10">
                 <div class="fbox"><span>Subject: </span>
                   <textarea name="text area" cols="1" rows="1" class="sbTitle"
                     placeholder="Text Subject" id="subject"></textarea></div>
@@ -108,17 +109,17 @@
               <label class="orgName clearfix">
                 <div class="float-left senderLst">
                   <!-- <div><input type="text" placeholder="Selected value" value="" id="tagsname"></div> -->
-                  Send To: &nbsp; <select multiple="multiple" class="senderList" disabled></select>
-                  <button type="button" class="butn drkblue" id="accessRgt" value="Get Selected">Add Receivers</button>
+                  Send To: &nbsp; <input type="text" class="datasender" disabled></select>
+                  <button type="button" class="butn drkblue openAccessrgt" value="Get Selected">Add Receivers</button>
                 </div>
                 <div class="float-right senderLst">
-                  Distributed To: <select id="senderList" multiple="multiple" class="senderList" disabled></select>
-                <button type="button" class="butn drkblue" id="accessRgt" value="Get Selected">Add Final Recipients</button>
+                  Distributed To: <input type="text" class="dataDistributer" disabled></select>
+                <button type="button" class="butn drkblue openReceiptns" value="Get Selected">Add Final Recipients</button>
                 </div>
               </label>
               <div class="line">
-                <button class="butn yelw" onclick="saveDraft()" id="saveDraft">Save as draft</button>
-                <button class="butn green">Save & Send</button>
+                <button class="butn yelw" onclick="saveDraft()">Save as draft</button>
+                <button class="butn green" onclick="saveDraft()">Save & Send</button>
                 <button class="butn green">Generate Final Report</button>
                 <button class="butn red">Reset</button>
                 <button class="butn blue">Preview</button>
@@ -129,11 +130,31 @@
                   <input type="text" placeholder="Diary Number" disabled> &nbsp; &nbsp;
                   <textarea name="text area" id="" cols="1" rows="1" placeholder="comments" class="sbTitle"></textarea>
                 </div>
-                <div class="float-right">
-                  <!-- <button class="butn drkblue" id="accessRgt">Access Rights</button> -->
-                  <button class="butn drkblue">+ Create</button>
-                </div>
               </label>
+            </div>
+            <div class="wrapper editView hide">
+              <div>
+                <span class="wrapSpan">Edit View</span>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+              </div>
+            </div>
+            <div class="wrapper viewReport active">
+              <span class="wrapSpan">View Report</span>
+              <hr/>
+              <p class="noData">No View Report Data Present..</p>
+              <div class="draftorg">
+                <span class="subDraft"></span>
+                <span class="dateDraft float-right"></span>
+              </div>
+            </div>
+            <div class="wrapper viewDraft hide">
+              <span class="wrapSpan">Drafts Report</span>
+              <hr/>
+              <p class="noData">No Draft Report Data save..</p>
+              <div class="draftorg">
+                <span class="subDraft"></span>
+                <span class="dateDraft float-right"></span>
+              </div>
             </div>
           </div>
         </div>
@@ -264,7 +285,7 @@
             </div>
 
             <!------------clipboard Start--------------->
-            <div class="clipbrd active">
+            <div class="clipbrd hide">
               <button class="accordion">ClipBoard</button>
               <div class="panel">
                 <table id="clipboard" class="display" style="width:100%">
@@ -281,40 +302,59 @@
               </div>
             </div>
 
-            <!-----------Access Right manager------------->
+            <!-----------Reveivers Management Start------------->
 
             <div class="accessMan accessRgt hide">
-              <button class="accordion">Access Right Manager</button>
+              <button class="accordion">Reveivers Management</button>
               <div class="panel">
-                <h2 class="recvrLst">Receivers Lists:</h2>
-                <p class="noRcvr">No Receivers List Selected</p>
-                <ul class="dataForAr p0 m0"></ul>
-                <hr class="hrLine"/>
-                <h2 class="recvrLst">Receivers Action:</h2>
-                <button class="butn cV default ml5">Can View</button>
-                <button class="butn cE default ml5">Can Edit</button>
-                <button class="butn cC default ml5">Can Comment</button>
-                <button class="butn default ml5" id="clear">Clear</button> <br />
+                <div class="senderLst">
+                  Select From List: &nbsp; <select multiple="multiple" class="senderList"></select>
+                  <button type="button" class="butn drkblue" id="accessRight" value="Get Selected">Add Receivers</button>
                 </div>
-              <ul class="clearfix p0 customTab">
-                <li><a href="#" class="active">Can View</a>
-                  <div class="tabsDetail active">
-                    <ul class="cVdata p0"></ul>
+                <div class="DataReceiver clearfix">
+                  <span class="accordion">Edit Access Permission</span>
+                  <ul></ul>
+                  <div class="float-right">
+                    <button type="button" class="butn default" value="Get Selected">Defaults</button>
+                    <button type="button" class="butn blue" value="Get Selected">Save Access Right</button>
                   </div>
-                </li>
-                <li><a href="#">Can Edit</a>
-                  <div class="tabsDetail">
-                    <ul class="cEdata p0"></ul>
-                  </div>
-                </li>
-                <li><a href="#">Can Comment</a>
-                  <div class="tabsDetail">
-                    <ul class="cCdata p0"></ul>
-                  </div>
-                </li>
-              </ul>
-
+                </div>
+                </div>
             </div>
+            <!-----------Reveivers Management End------------->
+
+            <!-----------Final Recipients Start------------->
+            <div class="accessMan distRecipients hide">
+              <button class="accordion">Final Recipients</button>
+              <div class="panel">
+                <div class="senderLst">
+                  Select From List: &nbsp; <select multiple="multiple" class="senderList"></select>
+                  <button type="button" class="butn drkblue" id="finalRecptns" value="Get Selected">Add Receivers</button>
+                </div>
+                <div class="DataDistributer clearfix">
+                  <ul></ul>
+                  <div class="float-right">
+                    <button type="button" class="butn default" value="Get Selected">Defaults</button>
+                    <button type="button" class="butn blue" value="Get Selected">Save Access Right</button>
+                  </div>
+                </div>
+                </div>
+            </div>
+            <!-----------Final Recipients end------------->
+            <!-----------ViewReport DetailPDF Start------------->
+            <div class="accessMan viewDetailReport active">
+              <button class="accordion">View Detail Report</button>
+              <button type="button" class="butn blue float-right editReport">Edit Report</button>
+              <div class="reportPdf clearfix">
+              <div id="reportPdf">
+                <span class="subDraftpdf"></span>
+                <span class="orgDraftpdf"></span>
+                <span class="dateDraftpdf"></span>
+              </div>
+              <button type="button" class="butn blue float-right" onclick="convertPDF();">Generate PDF</button>
+              </div>
+            </div>
+            <!-----------ViewReport DetailPDF Start end------------->
           </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -323,10 +363,19 @@
     </div>
   </div>
 
-  <!---------Loader-------------->
+  <!---------LoaderStart-------------->
   <div id='loader' style='display: none;'>
     <div class="loader"></div>
   </div>
+  <!---------LoaderEnd-------------->
+
+  <!---modalPopup Start-->
+  <div class="modalPopup">
+    <div class="modalHeader">Create Report <span class="crossModal">&#10005;</span></div>
+    <div class="modalContent p10"></div>
+    <div class="modalFooter p10">@footer.co.in</div>
+  </div>
+  <!---modalPopup End-->
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
@@ -335,6 +384,7 @@
   <script src='vendor/js/jquery-resizable.js'></script>
   <script src="vendor/js/jquery.dataTables.min.js"></script>
   <script src="vendor/js/jquery.richtext.js"></script>
+  <script src="vendor/js/jspdf.min.js"></script>
   <script src="vendor/js/custom.js"></script>
 </body>
 

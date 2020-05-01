@@ -1,15 +1,52 @@
-/*****************LeftMenu Icon******************/
+/*****************LeftMenu Icon and Tabs aaction Start******************/
 $(".menubar").click(function(){
+  $(".sidenav span").toggleClass("show");
   $("#mySidenav").toggleClass("resizeWidth");
   $("#main").toggleClass("resizeLeft");
   $(".panel-left").toggleClass("extendWidth");
   $(".menubar").toggleClass("change");
 });
-
+   /*************leftSideBar Start******************/
 $("#mySidenav a").click(function(){
+  var className = $(this).attr('class').split(' ').map(function(clssName){
+    return clssName;
+  });
+  if(className[0] == "createViewtab"){
+    $(".createView").siblings().removeClass('active').addClass('hide');
+    $(".clipbrd").removeClass("hide").addClass("active");
+    $(".viewDetailReport").removeClass("active").addClass("hide");
+    $(".createView").removeClass('hide').addClass('active');
+    $(".panel-right, .splitter").show();
+    $(".panel-left").removeClass("extendWidthMain");
+  }else if(className[0] == 'editViewtab'){
+    $(".editView").siblings().removeClass('active').addClass('hide');
+    $(".editView").removeClass('hide').addClass('active');
+    $(".panel-right, .splitter").show();
+    $(".panel-left").removeClass("extendWidthMain");
+  }else if(className[0] == 'viewReporttab'){
+    $(".viewReport").siblings().removeClass('active').addClass('hide');
+    $(".clipbrd,.accessRgt,.accessRgt,.smlrReport,.attcdEnclosur").removeClass("active").addClass("hide");
+    $(".viewReport,.viewDetailReport").removeClass('hide').addClass('active');
+    $(".panel-right, .splitter").show();
+    $(".panel-left").removeClass("extendWidthMain");
+  }else if(className[0] == 'viewDrafttab'){
+    $(".viewDraft").siblings().removeClass('active').addClass('hide');
+    $(".viewDraft").removeClass('hide').addClass('active');
+    $(".panel-right, .splitter").hide();
+    $(".panel-left").addClass("extendWidthMain");
+  }
   $(this).siblings().removeClass("Tabactive");
   $(this).addClass("Tabactive");
 });
+/****************leftSideBar End******************/
+
+/**********closeModal Start***************/
+$(".crossModal").click(function(){
+  $(".modalPopup").hide();
+  $("#loader").hide();
+});
+/**********closeModal End***************/
+
 /**************split the screen start *********************/
 $(".panel-left").resizable({
   handleSelector: ".splitter",
@@ -22,12 +59,6 @@ $(".panel-top").resizable({
 });
 
 /**************split the screen end *********************/
-
-$(".customTab li").click(function(){
-  $(this).siblings().children().removeClass("active");
-  $(this).children().siblings().addClass("active");
-});
-
 /***********loader start****************/
 $(document).ajaxStart(function(){
   $('#loader').css("display", "block");
@@ -38,33 +69,47 @@ $('#loader').css("display", "none");
 /***********loader end****************/
 
 /************** Jquery for rightside start *********************/
+function actionRight(){
+  $('.list-group').children().removeClass('active').addClass('hide');
+}
 $("#smlrReport").click(function (e) {
   e.preventDefault();
-  $('.list-group').children().removeClass('active').addClass('hide');
+  actionRight();
   $(".smlrReport").removeClass('hide').addClass("active");
 });
 
 $("#clipbrd").click(function (e) {
   e.preventDefault();
-  $('.list-group').children().removeClass('active').addClass('hide');
+  actionRight();
   $(".clipbrd").removeClass('hide').addClass('active');
 });
 
-$("#accessRgt").click(function (e) {
+$(".openAccessrgt").click(function (e) {
   e.preventDefault();
-  $('.list-group').children().removeClass('active').addClass('hide');
+  actionRight();
   $(".accessRgt").removeClass('hide').addClass('active');
+});
+$(".openReceiptns").click(function (e) {
+  e.preventDefault();
+  actionRight();
+  $(".distRecipients").removeClass('hide').addClass('active');
 });
 
 $("#attcdEnclosur").click(function (e) {
   e.preventDefault();
-  $('.list-group').children().removeClass('active').addClass('hide');
+  actionRight();
   $(".attcdEnclosur").removeClass('hide').addClass('active');
 });
-/************** Jquery for rightside end ********************/
 
+$().click(function(e){
+  e.preventDefault();
+  actionRight();
+  $(".viewDetailReport").removeClass('hide').addClass('active')
+})
+/************** Jquery for rightside end ********************/
 /*****************Receiver list data start**************/
 var RecvrLst = [];
+  
 $(document).ready(function() {
   $.ajax({
       //type: "POST",
@@ -86,59 +131,48 @@ $(document).ready(function() {
         enableFiltering: true,
         enableCaseInsensitiveFiltering: true,
         filterPlaceholder: 'Search for something...',
-        onChange: function(element, checked) {
-          var selected = $(".senderList option:selected");
-          $(selected).each(function(index, brands){
-            RecvrLst.push([$(this).text()]);
-          });
-        }
+        // onChange: function(element, checked) {
+        //   var selected = $(".senderList option:selected");
+        //   $(selected).each(function(index, brands){
+        //     RecvrLst.push([$(this).text()]);
+        //   });
+        // }
         });
        $(".senderList").multiselect('refresh');
       },
   });
 
   /*************access right action start**********/
-  $('#accessRgt').click(function () {
+  $('#accessRight').click(function () {
+    
     var selected = $(".senderList option:selected");
     var message = "";
     selected.each(function () {
         message += '<li class="dataClick"> <input type="checkbox" id="myCheck"> <label>' + $(this).text() + " " + $(this).val() + '</label></li>' ;
-       });
-    $('.accessRgt ul.dataForAr').html(message);
-    if($(".dataForAr").children().length == 0){
-      $(".noRcvr").show();
-    }else{
-      $(".noRcvr").hide();
-    }
-  });
-  $(".cV").on('click', function(){
-   var cvChecked = $(".dataClick input:checked").parent();
-    var cvData = "";
-    cvChecked.each(function(){
-      cvData += '<li>' +$(this).text() + '</li>';
-    });
-    $(".cVdata").html(cvData);
- });
- $(".cE").on('click', function(){
-  var cvChecked = $(".dataClick input:checked").parent();
-  var cvData = "";
-  cvChecked.each(function(){
-    cvData += '<li>' +$(this).text() + '</li>';
-  });
-  $(".cEdata").html(cvData);
-});
-$(".cC").on('click', function(){
-  var cvChecked = $(".dataClick input:checked").parent();
-  var cvData = "";
-  cvChecked.each(function(){
-    cvData += '<li>' +$(this).text() + '</li>';
-  });
-  $(".cCdata").html(cvData);  
-});
-$("#clear").on('click', function(){
-  $(this).siblings().children().children("#myCheck").prop("checked", false);
-});
+        RecvrLst.push([$(this).text()]);
+      });
+     var senderData = selected.length + " " + " Selected";
+    $('.datasender').val(senderData);
+    $(".DataReceiver").show();
+    $(".DataReceiver ul").html(message);
+   });
+  
 /*************access right action end**********/
+
+/*************Final Recieptions start**********/
+$('#finalRecptns').click(function () {
+  var selected = $(".senderList option:selected");
+  var message = "";
+  selected.each(function () {
+      message += '<li class="dataClick"> <input type="checkbox" id="myCheck"> <label>' + $(this).text() + " " + $(this).val() + '</label></li>' ;
+     });
+   var senderData = selected.length + " " + " Selected";
+  $('.dataDistributer').val(senderData);
+  $(".DataDistributer").show();
+  $(".DataDistributer ul").html(message);
+ });
+
+/*************Final Recieptions end**********/
 });
 /*****************Receiver list data end**************/
 
@@ -193,7 +227,7 @@ document.getElementsByClassName('theDate')[4].value = today;
 /*********fetching current Date calendar end********/
 
 /**** Attaching image start *********/
-$("i").click(function () {
+$(".element i.fa-paperclip").click(function () {
   $("input[type='file']").trigger('click');
 });
 $('input[type="file"]').on('change', function () {
@@ -419,22 +453,9 @@ $(document).ready(function () {
   $('.content').richText();
 });
 
-/******* Data table in clipboard for selecting rows start *******/
-//   var table = $('#clipboard').DataTable();
-//   $('#clipboard tbody').on('click', 'tr', function () {
-//     if ($(this).hasClass('selected')) {
-//       $(this).removeClass('selected');
-//     } else {
-//       table.$('tr.selected').removeClass('selected');
-//       $(this).addClass('selected');
-//     }
-// });
    
 /****Get Get From ClipBoard and update on Editor***/
 function updateIframes() {
-  //   var myFrame = $(".richText-editor").children("div");
-  //   var dataGet = displayRecords[i].employee_name;
-  //   myFrame.html(dataGet);
   $("td").click(function () {
     var myFrame = $(".richText-editor").children("div");
     var dataget = $(this).text();
@@ -450,6 +471,9 @@ function updateIframe(i) {
 }
 
 /**************Get the value of fields start******************/
+
+var items = [];
+var DataJSON = {};
 function saveDraft(){
   var orgName = document.getElementById("orgName").value;
   var fileNum = document.getElementById("fileNum").value;
@@ -458,35 +482,90 @@ function saveDraft(){
   var subject = document.getElementById("subject").value;
   var selectLayout = $("#selectLayout").find("option:selected").text();
   var editor = $("#editor").children().val();
-  console.log(editor);
-  if(orgName == ''){
-    alert("please enter the organization name");
+
+  var fields = $(".createView input").val();
+  if(fields == ""){
+    $("#loader").show();
+    $(".loader").hide();
+    $(".modalPopup").show();
+    $(".modalContent").text("First Please fill the Fields");
     return false;
-  }else if(fileNum == ''){
-    alert("please enter the fileNum name");
-  }else if(entitype == ''){
-    alert("please enter the entitype name");
-  }else if(dataRetriev == ''){
-    alert("please enter the dataRetriev name");
-  }else if(subject == ''){
-    alert("please enter the subject name");
-  }else if(selectLayout == ''){
-    alert("please enter the selectLayout name");
-  }else if(editor === ''){
-    alert("please enter the editor name");
-  }else if(RecvrLst == ''){
-    alert("please enter the RecvrLst name");
-    console.log(RecvrLst);
   }
-  $.ajax({
-    type: "POST",
-    url: 'http://dummy.restapiexample.com/api/v1/employees',
-    data: "orgName="+orgName+"&fileNum="+fileNum+"&entitype="+entitype+"&dataRetriev="+dataRetriev+
-    "&subject="+subject+"&selectLayout="+selectLayout+"&RecvrLst="+RecvrLst,
-    success: function() {
-      console.log(data);
-         //success message mybe...
+  
+  DataJSON["orgName"] = orgName;
+  DataJSON["fileNum"] = fileNum;
+  DataJSON["entitype"] = entitype;
+  DataJSON["dataRetriev"] = dataRetriev;
+  DataJSON["subject"] = subject;
+  DataJSON["selectLayout"] = selectLayout;
+  DataJSON["editor"] = editor;
+  DataJSON["RecvrLst"] = RecvrLst;
+
+  items.push(DataJSON);
+  localStorage.setItem('added-draft', JSON.stringify(items, undefined, 2));
+}
+
+function dataLoad(){
+  debugger
+  $(".draftorg").hide();
+  var retrievedObject = localStorage.getItem('added-draft');
+  var parsedObject = JSON.parse(retrievedObject);
+  if(parsedObject != null){
+    $(".draftorg").show();
+    $(".noData").hide();
+  }
+  for(i=0; i<=parsedObject.length;i++){
+  $(".subDraft").text(parsedObject[i].subject);
+  $(".dateDraft").text(parsedObject[i].dataRetriev);
+  }
+}
+
+$(".viewDrafttab").click(function(){
+  debugger
+  dataLoad();  
+});
+
+$(".draftorg").click(function(){
+  $(".draftorgdata").toggleClass("active");
+});
+/************Get the value of fields end***************/
+
+$(".draftorg").click(function(){
+  var retrievedReport = localStorage.getItem('added-draft');
+   var parsedObject = JSON.parse(retrievedReport);
+  if(parsedObject != null){
+    $(".reportPdf").show();
+    $(".noData").hide();
+  }
+        /*********EditReport Start**************/
+        $(".editReport").click(function(){
+          $(".viewDetailReport,.viewReport").removeClass("active").addClass("hide");
+          $(".editView,.clipbrd").removeClass("hide").addClass("active");
+          $(".viewReporttab").removeClass("Tabactive");
+          $(".editViewtab").addClass("Tabactive");
+        });
+  for(i=0; i<=parsedObject.length;i++){
+    $(".subDraftpdf").text(parsedObject[i].subject);
+    $(".orgDraftpdf").text(parsedObject[i].orgName);
+    $(".dateDraftpdf").text(parsedObject[i].dataRetriev);
     }
 });
+
+/*******generate PDF start************/
+function convertPDF() {
+	var doc = new jsPDF();
+	var elementHTML = $('#reportPdf').html();
+	var specialElementHandlers = {
+		'#elementH': function (element, renderer) {
+			return true;
+		}
+	};
+	doc.fromHTML(elementHTML, 15, 15, {
+        'width': 170,
+        'elementHandlers': specialElementHandlers
+    });
+	
+	// Save the PDF
+	doc.save('viewReport.pdf');
 }
-/************Get the value of fields end***************/
+/*******generate PDF end************/
