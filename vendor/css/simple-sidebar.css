@@ -257,6 +257,10 @@ h3.draftorg{background-color:transparent;margin:0 0 15px;padding:0;cursor: none;
 .reportPdf{border:1px solid #e3e3e3;padding:20px;display:none;}
 .reportPdf span{display:block;}
 .subDraftpdf{font-weight:600;font-size:14px;margin:15px 0}
+.multiselect-container{height:350px;overflow-y:auto;}
+.multiselect{width:250px}
+.ReceiverList2{display:none;margin:10px 0}
+.ReceiverList1{margin-bottom:10px}
 /*****media query start*******/
 @media (min-width: 768px) {
   #sidebar-wrapper {

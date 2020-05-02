@@ -12,6 +12,7 @@ $("#mySidenav a").click(function(){
     return clssName;
   });
   if(className[0] == "createViewtab"){
+    $(".wrapSpan").replaceWith("<span class='wrapSpan'>"+ $(this).attr("title")+ "</span>");
     $(".createView").siblings().removeClass('active').addClass('hide');
     $(".clipbrd").removeClass("hide").addClass("active");
     $(".viewDetailReport").removeClass("active").addClass("hide");
@@ -19,17 +20,27 @@ $("#mySidenav a").click(function(){
     $(".panel-right, .splitter").show();
     $(".panel-left").removeClass("extendWidthMain");
   }else if(className[0] == 'editViewtab'){
-    $(".editView").siblings().removeClass('active').addClass('hide');
-    $(".editView").removeClass('hide').addClass('active');
+    $(".wrapSpan").replaceWith("<span class='wrapSpan'>"+ $(this).attr("title")+ "</span>");
+    // $(".editView").siblings().removeClass('active').addClass('hide');
+    // $(".editView").removeClass('hide').addClass('active');
+    // $(".panel-right, .splitter").show();
+    // $(".panel-left").removeClass("extendWidthMain");
+
+    $(".createView").siblings().removeClass('active').addClass('hide');
+    $(".clipbrd").removeClass("hide").addClass("active");
+    $(".viewDetailReport").removeClass("active").addClass("hide");
+    $(".createView").removeClass('hide').addClass('active');
     $(".panel-right, .splitter").show();
     $(".panel-left").removeClass("extendWidthMain");
   }else if(className[0] == 'viewReporttab'){
+    $(".wrapSpan").replaceWith("<span class='wrapSpan'>"+ $(this).attr("title")+ "</span>");
     $(".viewReport").siblings().removeClass('active').addClass('hide');
     $(".clipbrd,.accessRgt,.accessRgt,.smlrReport,.attcdEnclosur").removeClass("active").addClass("hide");
     $(".viewReport,.viewDetailReport").removeClass('hide').addClass('active');
     $(".panel-right, .splitter").show();
     $(".panel-left").removeClass("extendWidthMain");
   }else if(className[0] == 'viewDrafttab'){
+    $(".wrapSpan").replaceWith("<span class='wrapSpan'>"+ $(this).attr("title")+ "</span>");
     $(".viewDraft").siblings().removeClass('active').addClass('hide');
     $(".viewDraft").removeClass('hide').addClass('active');
     $(".panel-right, .splitter").hide();
@@ -131,30 +142,45 @@ $(document).ready(function() {
         enableFiltering: true,
         enableCaseInsensitiveFiltering: true,
         filterPlaceholder: 'Search for something...',
-        // onChange: function(element, checked) {
-        //   var selected = $(".senderList option:selected");
-        //   $(selected).each(function(index, brands){
-        //     RecvrLst.push([$(this).text()]);
-        //   });
-        // }
         });
-       $(".senderList").multiselect('refresh');
+       $(".senderList").multiselect('rebuild');
       },
   });
+
+  $(".senderList").on("change",function(element, checked){
+    otherReceiverList();
+  });
+
+  function otherReceiverList(){
+    var selected = $(".senderList option:selected");
+    selected.children().remove();
+      selected.each(function (key,value) {
+        $(".senderList2nd").append($("<option></option>").val(value.value).html(value.text));
+    });
+    $(".ReceiverList2").show();
+    $('.senderList2nd').multiselect({
+      includeSelectAllOption: true,
+      enableFiltering: true,
+      enableCaseInsensitiveFiltering: true,
+      filterPlaceholder: 'Search for something...',
+      });
+      $(".senderList2nd").multiselect('rebuild');
+
+  }
 
   /*************access right action start**********/
   $('#accessRight').click(function () {
     
     var selected = $(".senderList option:selected");
-    var message = "";
+    var receiverList = "";
     selected.each(function () {
-        message += '<li class="dataClick"> <input type="checkbox" id="myCheck"> <label>' + $(this).text() + " " + $(this).val() + '</label></li>' ;
+      receiverList += '<li class="dataClick"> <input type="checkbox" id="myCheck"> <label>' + $(this).text() + " " + $(this).val() + '</label></li>' ;
         RecvrLst.push([$(this).text()]);
       });
      var senderData = selected.length + " " + " Selected";
     $('.datasender').val(senderData);
     $(".DataReceiver").show();
-    $(".DataReceiver ul").html(message);
+    $(".DataReceiver ul").html(receiverList);
    });
   
 /*************access right action end**********/
@@ -506,7 +532,7 @@ function saveDraft(){
 }
 
 function dataLoad(){
-  debugger
+  
   $(".draftorg").hide();
   var retrievedObject = localStorage.getItem('added-draft');
   var parsedObject = JSON.parse(retrievedObject);
@@ -521,7 +547,7 @@ function dataLoad(){
 }
 
 $(".viewDrafttab").click(function(){
-  debugger
+  
   dataLoad();  
 });
 
@@ -539,8 +565,9 @@ $(".draftorg").click(function(){
   }
         /*********EditReport Start**************/
         $(".editReport").click(function(){
+          $(".wrapSpan").replaceWith("<span class='wrapSpan'>"+ $(this).text()+ "</span>");
           $(".viewDetailReport,.viewReport").removeClass("active").addClass("hide");
-          $(".editView,.clipbrd").removeClass("hide").addClass("active");
+          $(".createView,.clipbrd").removeClass("hide").addClass("active");
           $(".viewReporttab").removeClass("Tabactive");
           $(".editViewtab").addClass("Tabactive");
         });
